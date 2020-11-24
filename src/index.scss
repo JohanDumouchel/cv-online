@@ -1,8 +1,27 @@
+@font-face {
+  font-family: 'Oswald-Light';
+  src: local('Oswald-Light'), url(./fonts/oswald/Oswald-Light.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Oswald-Regular';
+  src: local('Oswald-Regular'), url(./fonts/oswald/Oswald-Regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'RobotoCondensed-Light';
+  src: local('RobotoCondensed-Light'), url(./fonts/roboto-condensed/RobotoCondensed-Light.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'RobotoCondensed-Regular';
+  src: local('RobotoCondensed-Regular'), url(./fonts/roboto-condensed/RobotoCondensed-Regular.ttf) format('truetype');
+}
 body {
   margin: 0;
-  font-family: source-code-pro, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'RobotoCondensed-Light', 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  h1 {
+    font-family: 'Oswald-Regular';
+  }
 }

@@ -2,6 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
+
+// Fonts import
+import './fonts/oswald/Oswald-Regular.ttf';
+import './fonts/oswald/Oswald-Light.ttf';
+import './fonts/roboto-condensed/RobotoCondensed-Light.ttf';
+import './fonts/roboto-condensed/RobotoCondensed-Regular.ttf';
 // import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
