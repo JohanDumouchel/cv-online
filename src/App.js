@@ -1,8 +1,10 @@
 import './App.scss';
 import CoreCV from './CoreCV.js';
-// images
+// Images
 import PhotoProfile from './img/profile-job.jpg'
 import { ReactComponent as IconResume } from './img/logo-resume.svg';
+// Files
+import FileCV from './files/CV-johan-dumouchel-2020.pdf';
 
 //---- Header with light menu 
 function HeaderBar() {
@@ -39,10 +41,10 @@ function IntroCV() {
         <h2>Johan Dumouchel</h2>
         <a title="mail" href="#">johandumouchel@gmail.com</a>
         <a title="tel" href="#">06 29 70 72 08</a>
-        <a title="lien LinkedIn" href="#">LinkedIn</a>
-        <a title="lien GitHub" href="#">GitHub</a>
-        <a title="adresse domicile" href="#">Rue de la folie méricourt, Paris 11ème.</a>
-        <a title="CV à télécharger" href="#">CV</a>
+        <a title="LinkedIn" href="#">LinkedIn</a>
+        <a title="GitHub" href="#">GitHub</a>
+        <a title="Adresse domicile" href="#">Rue de la folie méricourt, Paris 11ème.</a>
+        <a title="CV à télécharger" href={FileCV} target="blank">CV</a>
       </div>
       <div>
         <h1>Concepteur Développeur</h1>
