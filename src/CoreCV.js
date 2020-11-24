@@ -9,7 +9,7 @@ class CoreCV extends Component {
 
   render(){
     return(
-      <div> CoreCV </div>
+      <div className="container"> CoreCV </div>
     );
   }
 }

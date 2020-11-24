@@ -36,24 +36,26 @@ function IntroSite() {
 function IntroCV() {
   return (
     <div className="container intro-cv">
-      <div className="profile">
-        <img src={PhotoProfile} alt="profile du CV"/>
-        <h2>Johan Dumouchel</h2>
-        <a title="mail" href="#">johandumouchel@gmail.com</a>
-        <a title="tel" href="#">06 29 70 72 08</a>
-        <a title="LinkedIn" href="#">LinkedIn</a>
-        <a title="GitHub" href="#">GitHub</a>
-        <a title="Adresse domicile" href="#">Rue de la folie méricourt, Paris 11ème.</a>
-        <a title="CV à télécharger" href={FileCV} target="blank">CV</a>
-      </div>
-      <div>
-        <h1>Concepteur Développeur</h1>
-        <p>Souriant, motivé et passionné d’informatique je suis à la recherche 
-          d’une opportunité d’avenir. Mes années d’apprentissage ainsi que mes
-          expériences professionnelles m’ont permis d’accumuler 5 ans d’expériences
-          dans la conception et le développement d’applications web.
-        </p>
-      </div>
+        <img className="profile-picture" src={PhotoProfile} alt="profile du CV"/>
+        <div className="profile-info">
+          <h1>Johan Dumouchel</h1>
+          <div className="profile-info-links">
+            <a title="mail" href="#">johandumouchel@gmail.com</a>
+            <a title="tel" href="#">06 29 70 72 08</a>
+            <a title="LinkedIn" href="#">LinkedIn</a>
+            <a title="GitHub" href="#">GitHub</a>
+            <a title="Adresse domicile" href="#">Rue de la folie méricourt, Paris 11ème.</a>
+            <a title="CV à télécharger" href={FileCV} target="blank">CV</a>
+          </div>
+        </div>
+        <div className="profile-desc">
+          <h1>Concepteur Développeur</h1>
+          <p>Souriant, motivé et passionné d’informatique je suis à la recherche 
+            d’une opportunité d’avenir. Mes années d’apprentissage ainsi que mes
+            expériences professionnelles m’ont permis d’accumuler 5 ans d’expériences
+            dans la conception et le développement d’applications web.
+          </p>
+      </div>        
     </div>
   );
 }

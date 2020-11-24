@@ -1,19 +1,74 @@
-.container {
-  display: flex;
-  flex-direction: row;
-}
+/* 
+* Screen Size for responsive design
+*/
+// Large screen min width
+$mediaLS: 900px;
+// Medium screen min width
+$mediaMS: 600px;
+// Small screen min width
+$mediaSS: 300px; 
 
-.header-bar {
-  $margin-inline: 0.6em;
-  align-items: center;
-  .ico-resume {
-    width: 2.5em;
-    height: 2.5em;
-    margin-inline-start: $margin-inline;
-    margin-inline-end: $margin-inline;
+
+// Large Screen design
+@media(min-width: $mediaLS){
+  
+  // General
+  .container {
+    display: flex;
+    $padding-h: 0.8rem;
+    $padding-v: 1.6rem;
+    padding-inline-start: $padding-h;
+    padding-inline-end: $padding-h;
+    padding-block-start: $padding-v;
+    padding-block-end: $padding-v;
   }
-  h1 {
-    margin-inline-start: $margin-inline;
-    margin-inline-end: $margin-inline;
+
+  // Header
+  .header-bar {
+    $margin-inline: 0.6em;
+    padding-block-start: 0;
+    padding-block-end: 0;
+    flex-direction: row;
+    align-items: center;
+    background-color: #efefef;
+    .ico-resume {
+      width: 2.5em;
+      height: 2.5em;
+      margin-inline-start: $margin-inline;
+      margin-inline-end: $margin-inline;
+    }
+    h1 {
+      margin-inline-start: $margin-inline;
+      margin-inline-end: $margin-inline;
+    }
+  }
+
+  // IntroSite
+  .intro-site {
+    flex-direction: column;
+    padding-block-start: 0;
+  }
+
+  // IntroCV
+  .intro-cv {
+    flex-direction: row;
+    .profile-picture {
+      max-width: 100%;
+      height: fit-content;
+    }
+    .profile-info-links {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  // Interest
+  .interest {
+    flex-direction: column;
+  }
+
+  // Footer
+  .footer {
+    background-color: #efefef;
   }
 }
