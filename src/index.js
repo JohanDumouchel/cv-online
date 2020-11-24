@@ -8,6 +8,8 @@ import './fonts/oswald/Oswald-Regular.ttf';
 import './fonts/oswald/Oswald-Light.ttf';
 import './fonts/roboto-condensed/RobotoCondensed-Light.ttf';
 import './fonts/roboto-condensed/RobotoCondensed-Regular.ttf';
+import './fonts/source-code-pro/SourceCodePro-Light.ttf';
+import './fonts/source-code-pro/SourceCodePro-Regular.ttf';
 // import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
