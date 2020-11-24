@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.header-bar {
+  $margin-inline: 0.6em;
+  align-items: center;
+  .ico-resume {
+    width: 2.5em;
+    height: 2.5em;
+    margin-inline-start: $margin-inline;
+    margin-inline-end: $margin-inline;
+  }
+  h1 {
+    margin-inline-start: $margin-inline;
+    margin-inline-end: $margin-inline;
+  }
+}
