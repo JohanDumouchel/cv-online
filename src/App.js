@@ -1,5 +1,7 @@
 import './App.scss';
 import CoreCV from './CoreCV.js';
+// images
+import PhotoProfile from './img/profile-job.jpg'
 import { ReactComponent as IconResume } from './img/logo-resume.svg';
 
 //---- Header with light menu 
@@ -16,8 +18,24 @@ function HeaderBar() {
 function IntroSite() {
   return (
     <div className="container intro-site">
-      <div>
-        <img alt="profile du CV" src=""/>
+      <h1>Hello World !</h1>
+      <p>Bonjour et bienvenue. Ce site a été conçu comme un complément du CV. 
+      Il résume les grandes lignes de mon CV 
+      tout en permettant de mieux se rendre compte 
+      des liens qui existent entre les différentes parties 
+      (compétences, expériences pro., stack techniques et autres).
+      Un CV dynamique et intuitif en soit. Une manière cohérente de mettre 
+      en pratique et en avant une partie de mes compétences.</p>
+    </div>
+  );
+}
+
+//---- Job profile introduction 
+function IntroCV() {
+  return (
+    <div className="container intro-cv">
+      <div className="profile">
+        <img src={PhotoProfile} alt="profile du CV"/>
         <h2>Johan Dumouchel</h2>
         <a title="mail" href="#">johandumouchel@gmail.com</a>
         <a title="tel" href="#">06 29 70 72 08</a>
@@ -27,22 +45,13 @@ function IntroSite() {
         <a title="CV à télécharger" href="#">CV</a>
       </div>
       <div>
-        <p>#TODO</p>
+        <h1>Concepteur Développeur</h1>
+        <p>Souriant, motivé et passionné d’informatique je suis à la recherche 
+          d’une opportunité d’avenir. Mes années d’apprentissage ainsi que mes
+          expériences professionnelles m’ont permis d’accumuler 5 ans d’expériences
+          dans la conception et le développement d’applications web.
+        </p>
       </div>
-    </div>
-  );
-}
-
-//---- Job profile introduction 
-function IntroCV() {
-  return (
-    <div className="container intro-cv">
-      <h1>Concepteur Développeur</h1>
-      <p>Souriant, motivé et passionné d’informatique je suis à la recherche 
-        d’une opportunité d’avenir. Mes années d’apprentissage ainsi que mes
-        expériences professionnelles m’ont permis d’accumuler 5 ans d’expériences
-        dans la conception et le développement d’applications web.
-      </p>
     </div>
   );
 }
