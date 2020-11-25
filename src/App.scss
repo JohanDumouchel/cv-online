@@ -53,13 +53,41 @@ $mediaSS: 300px;
   // IntroCV
   .intro-cv {
     flex-direction: row;
+    padding-block-start: 0;
+    align-items: center;
     .profile-picture {
       max-width: 100%;
       height: fit-content;
+      padding-inline-start: 0.5rem;
+      padding-inline-end: 0.5rem;
     }
-    .profile-info-links {
+    .profile-info {
       display: flex;
       flex-direction: column;
+      height: fit-content;
+      padding-inline-start: 0.5rem;
+      padding-inline-end: 0.5rem;
+      font-size: 0.8em;
+      h1 {
+        font-size: 1.2em;
+      }
+      a {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-block-end: 0.8rem;
+        img {
+          padding-inline-end: 0.5rem;
+          max-height: 0.8rem;
+        }
+      }
+    }
+    .profile-desc {
+      height: fit-content;
+      padding-inline-start: 0.5rem;
+      padding-inline-end: 0.5rem;
+      align-self: flex-start;
+      flex-grow: 2;
     }
   }
 

@@ -3,6 +3,12 @@ import CoreCV from './CoreCV.js';
 // Images
 import PhotoProfile from './img/profile-job.jpg'
 import { ReactComponent as IconResume } from './img/logo-resume.svg';
+import iconUser from './img/user.png';
+import iconLetter from './img/letter.png';
+import iconSmartPhone from './img/smartphone.png';
+import iconSearch from './img/search.png';
+import iconLocation from './img/location.png';
+import iconPaper from './img/paper.png';
 // Files
 import FileCV from './files/CV-johan-dumouchel-2020.pdf';
 
@@ -39,14 +45,18 @@ function IntroCV() {
         <img className="profile-picture" src={PhotoProfile} alt="profile du CV"/>
         <div className="profile-info">
           <h1>Johan Dumouchel</h1>
-          <div className="profile-info-links">
-            <a title="mail" href="#">johandumouchel@gmail.com</a>
-            <a title="tel" href="#">06 29 70 72 08</a>
-            <a title="LinkedIn" href="#">LinkedIn</a>
-            <a title="GitHub" href="#">GitHub</a>
-            <a title="Adresse domicile" href="#">Rue de la folie méricourt, Paris 11ème.</a>
-            <a title="CV à télécharger" href={FileCV} target="blank">CV</a>
-          </div>
+          <a title="mail" href="#"> <img src={iconLetter} alt="icône mail"/> johandumouchel@gmail.com</a>
+          <a title="tel" href="#"><img src={iconSmartPhone} alt="icône smartphone"/> 06 29 70 72 08</a>
+          <a title="LinkedIn" href="#"><img src={iconUser} alt="icône utilisateur"/> LinkedIn</a>
+          <a title="GitHub" href="#"><img src={iconSearch} alt="icône loupe"/> GitHub</a>
+          <a title="Adresse domicile" href="#">
+            <img src={iconLocation} alt="icône localisation"/>
+             Rue de la folie méricourt, Paris 11ème.
+          </a>
+          <a title="CV à télécharger" href={FileCV} target="blank">
+            <img src={iconPaper} alt="icône feuille papier"/> 
+            CV
+          </a>
         </div>
         <div className="profile-desc">
           <h1>Concepteur Développeur</h1>
