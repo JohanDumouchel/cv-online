@@ -96,6 +96,16 @@ $mediaSS: 300px;
     flex-direction: column;
   }
 
+  // CoreCV
+  .core-cv {
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    .actif{
+      width: 100%;
+      order: -1;
+    }
+  }
+
   // Footer
   .footer {
     background-color: #efefef;
