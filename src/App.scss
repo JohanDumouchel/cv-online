@@ -8,6 +8,12 @@ $mediaMS: 600px;
 // Small screen min width
 $mediaSS: 300px; 
 
+/*
+* Color 
+*/
+$grey-light: #efefef;
+$grey-dark: #666666;
+$orange: #f6b26b;
 
 // Large Screen design
 @media(min-width: $mediaLS){
@@ -30,7 +36,7 @@ $mediaSS: 300px;
     padding-block-end: 0;
     flex-direction: row;
     align-items: center;
-    background-color: #efefef;
+    background-color: $grey-light;
     .ico-resume {
       width: 2.5em;
       height: 2.5em;
@@ -100,14 +106,35 @@ $mediaSS: 300px;
   .core-cv {
     flex-wrap: wrap;
     justify-content: space-evenly;
-    .actif{
+    padding-block-start: 0;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+    background-color: $grey-light;
+
+    .core-cv-item {
+      margin: auto;
+      text-align: center;
+    }
+    
+    .content {
+      display: none;
+    }
+
+    .actif {
       width: 100%;
+      background-color: $grey-dark;
       order: -1;
+      h1 {
+        color: $orange;
+      }
+      .content {
+        display: flex;
+      }
     }
   }
 
   // Footer
   .footer {
-    background-color: #efefef;
+    background-color: $grey-light;
   }
 }

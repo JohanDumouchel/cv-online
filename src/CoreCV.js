@@ -1,25 +1,102 @@
 import React, { Component } from 'react';
 
+class JobListItem extends Component{
+  
+  render(){
+    let job = this.props.job;
+    if(!job 
+      || !job.title 
+      || (!job.skills && Array.isArray(job.skills)))
+    {
+      return;
+    }
+
+    const skills = job.skills.map((skill,i)=>{
+      return( <li> {skill} </li> );
+    });
+
+    return(
+      <div>
+        <h3>{job.title}</h3>
+        <ul>
+          {skills}
+        </ul>
+      </div>
+    );
+  }
+}
+
+class JobList extends Component {
+  constructor(props){
+    super(props);
+    this.renderJobListItems = this.renderJobListItems.bind(this);
+  }
+
+  renderJobListItems (){
+    const jobs = this.props.jobs.slice();
+    const jobsListItems = jobs.map((job,i) => {
+      return ( <JobListItem key={i} job={job} /> ) ;
+    })
+    return (jobsListItems);
+  }
+
+  render(){
+    return (
+      <div className>
+        <h2>Liste des dernières expériences professionnelles</h2>
+        <div>
+          {this.renderJobListItems()}
+        </div>      
+      </div>
+    );
+  }
+}
+
+class Job extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      jobSlected: null,
+    }
+    this.handleClickJob = this.handleClickJob.bind(this);
+  }
+
+  handleClickJob(){
+  }
+
+  render (){    
+    return (
+      <div className="job content">
+        <JobList  jobs={this.props.jobs}/>
+      </div>
+    );
+  }
+}
+
 class CoreCVITem extends Component {
   constructor(props){
     super(props);
   }
-
+  
   render(){
     const Txt = this.props.actif ? 'Actif' : 'Pas Actif';
     const actif = this.props.actif ? 'actif' : '';
+    let coreCVITemContent=null;
+    if(this.props.section === "job"){
+      coreCVITemContent = <Job jobs={this.props.data}/>
+    } else {
+      coreCVITemContent = <p className="content"> Dev en cours !</p>
+    }
+
     return(
-      <div className={actif}>
+      <div className={`core-cv-item ${actif}`}>
         <h1>
-          {this.props.coreTxt.title}
-        </h1>
-        <p>{Txt}</p>
-        <div>
-          {}
-        </div>        
-        <button onClick={this.props.onClick}>
+          {this.props.title} - {Txt}
+          <button onClick={this.props.onClick}>
           TEST
         </button>
+        </h1>
+        {coreCVITemContent}
       </div>
     );
   }
@@ -46,15 +123,17 @@ class CoreCV extends Component {
       <div className="container core-cv">
         <CoreCVITem 
           actif={(this.state.activeSection === 'job')} 
-          coreTxt={{title:'Expériences Pro.',jobs:Jobs}}
+          section="job"
+          title="Expériences Pro."
+          data={Jobs}
           onClick={() => {this.handleClick('job')}}/>
         <CoreCVITem 
           actif={(this.state.activeSection === 'skill')} 
-          coreTxt={{title:'Compétences'}}
+          title="Compétences"
           onClick={() => {this.handleClick('skill')}}/>
         <CoreCVITem 
           actif={(this.state.activeSection === 'degree')} 
-          coreTxt={{title:'Diplômes'}}
+          title="Diplômes"
           onClick={() => {this.handleClick('degree')}}/>
       </div>
     );
