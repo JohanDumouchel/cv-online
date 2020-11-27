@@ -1,4 +1,12 @@
 import React, { Component } from 'react';
+// Images
+import iconJobGrey from './img/job-grey.png';
+import iconJobOrange from './img/job-orange.png';
+import iconSkillGrey from './img/skill-grey.png';
+import iconSkillOrange from './img/skill-orange.png';
+import iconDegreeGrey from './img/degree-grey.png';
+import iconDegreeOrange from './img/degree-orange.png';
+
 
 class JobListItem extends Component{
   
@@ -8,15 +16,14 @@ class JobListItem extends Component{
       || !job.title 
       || (!job.skills && Array.isArray(job.skills)))
     {
-      return;
+      return null;
     }
-
     const skills = job.skills.map((skill,i)=>{
-      return( <li> {skill} </li> );
+      return( <li key={i}> {skill} </li> );
     });
 
     return(
-      <div>
+      <div className="job-list-item">
         <h3>{job.title}</h3>
         <ul>
           {skills}
@@ -42,11 +49,11 @@ class JobList extends Component {
 
   render(){
     return (
-      <div className>
+      <div className="job-list">
         <h2>Liste des dernières expériences professionnelles</h2>
         <div>
           {this.renderJobListItems()}
-        </div>      
+        </div>
       </div>
     );
   }
@@ -79,24 +86,34 @@ class CoreCVITem extends Component {
   }
   
   render(){
-    const Txt = this.props.actif ? 'Actif' : 'Pas Actif';
     const actif = this.props.actif ? 'actif' : '';
-    let coreCVITemContent=null;
-    if(this.props.section === "job"){
-      coreCVITemContent = <Job jobs={this.props.data}/>
-    } else {
-      coreCVITemContent = <p className="content"> Dev en cours !</p>
+    let content = <p className="content"> Dev en cours !</p>;
+    let imagePath = null;
+
+    switch(this.props.section){
+      case "job":
+        content = <Job jobs={this.props.data}/>;
+        imagePath = this.props.actif?iconJobOrange:iconJobGrey;
+        break;
+      case "skill" :
+        imagePath = this.props.actif?iconSkillOrange:iconSkillGrey;
+        break;
+      case "degree" :
+        imagePath = this.props.actif?iconDegreeOrange:iconDegreeGrey;
+        break;
     }
 
     return(
       <div className={`core-cv-item ${actif}`}>
+        <img
+          className="ico-item" 
+          alt={`Icône en rapport avec la section ${this.props.title} du CV`}
+          src={imagePath}
+          onClick={this.props.onClick}/>
         <h1>
-          {this.props.title} - {Txt}
-          <button onClick={this.props.onClick}>
-          TEST
-        </button>
+          {this.props.title}
         </h1>
-        {coreCVITemContent}
+        {content}
       </div>
     );
   }
@@ -128,11 +145,13 @@ class CoreCV extends Component {
           data={Jobs}
           onClick={() => {this.handleClick('job')}}/>
         <CoreCVITem 
-          actif={(this.state.activeSection === 'skill')} 
+          actif={(this.state.activeSection === 'skill')}
+          section="skill"
           title="Compétences"
           onClick={() => {this.handleClick('skill')}}/>
         <CoreCVITem 
-          actif={(this.state.activeSection === 'degree')} 
+          actif={(this.state.activeSection === 'degree')}
+          section="degree"
           title="Diplômes"
           onClick={() => {this.handleClick('degree')}}/>
       </div>

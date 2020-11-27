@@ -15,6 +15,10 @@ $grey-light: #efefef;
 $grey-dark: #666666;
 $orange: #f6b26b;
 
+body {
+  color: $grey-dark;
+}
+
 // Large Screen design
 @media(min-width: $mediaLS){
   
@@ -111,19 +115,30 @@ $orange: #f6b26b;
     padding-inline-end: 0;
     background-color: $grey-light;
 
+    // CoreCvItem
     .core-cv-item {
       margin: auto;
       text-align: center;
-    }
-    
+      padding-block-start: 1.6rem;
+      .ico-item{
+        max-width: 8rem;
+        height: auto;
+        transition: transform 1s;
+      }
+      .ico-item:hover {
+        transform: scale(1.2);
+      }
+    }    
     .content {
+      text-align: left;
       display: none;
     }
-
+    // CoreCvItem actif
     .actif {
       width: 100%;
       background-color: $grey-dark;
       order: -1;
+      color: $grey-light;
       h1 {
         color: $orange;
       }
@@ -131,6 +146,8 @@ $orange: #f6b26b;
         display: flex;
       }
     }
+
+    // CoreCVItem
   }
 
   // Footer
