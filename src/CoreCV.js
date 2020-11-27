@@ -6,6 +6,8 @@ import iconSkillGrey from './img/skill-grey.png';
 import iconSkillOrange from './img/skill-orange.png';
 import iconDegreeGrey from './img/degree-grey.png';
 import iconDegreeOrange from './img/degree-orange.png';
+import iconArrowRight from './img/arrow-right-orange.png';
+import iconArrowBottom from './img/arrow-bottom-orange.png';
 
 
 class JobListItem extends Component{
@@ -22,12 +24,17 @@ class JobListItem extends Component{
       return( <li key={i}> {skill} </li> );
     });
 
+    let skillsRender;
+    if(this.props.jobSelected){
+      skillsRender = <ul> {skills} </ul>;
+    }
+
     return(
       <div className="job-list-item">
-        <h3>{job.title}</h3>
-        <ul>
-          {skills}
-        </ul>
+        <div className="title">
+          <h3><img src={iconArrowRight}/>{job.title}</h3>
+        </div>
+        {skillsRender}
       </div>
     );
   }
@@ -71,7 +78,7 @@ class Job extends Component {
   handleClickJob(){
   }
 
-  render (){    
+  render (){
     return (
       <div className="job content">
         <JobList  jobs={this.props.jobs}/>
