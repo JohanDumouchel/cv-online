@@ -9,8 +9,73 @@ import iconDegreeOrange from './img/degree-orange.png';
 import iconArrowRight from './img/arrow-right-orange.png';
 import iconArrowBottom from './img/arrow-bottom-orange.png';
 
+class JobStack extends Component {
+  constructor(props){
+    super(props);
+    this.renderStack = this.renderStack.bind(this);
+  }
+  renderStack(){
+    let job = this.props.job;
+    let env;
+    let langage;
+    let framework;
+    let degree;
+    
+    if(job && Array.isArray(job.env)){
+      env = <ul>{ job.env.map((env,i)=>{ return(<li key={i}>{env}</li>)}) }</ul> ;
+    }
+    if(job && Array.isArray(job.langage)){
+      langage = <ul>{ job.langage.map((langage,i)=>{ return(<li key={i}>{langage}</li>)}) }</ul> ;
+    }
+    if(job && Array.isArray(job.framework)){
+      framework = <ul>{ job.framework.map((framework,i)=>{ return(<li key={i}>{framework}</li>)}) }</ul> ;
+    }
+    if(job && job.degree){
+      degree = <p>{job.degree}</p> ;
+    }
+        
+    return(
+    <div>
+      <div>
+        <h3>Environnement :</h3>
+        {env} 
+      </div>
+      <div>
+        <h3>Langage informatique :</h3>
+        {langage}
+      </div>
+      <div>
+        <h3>Framework et applications :</h3>
+        {framework}
+      </div>
+      <div>
+        <h3>Diplômes :</h3>
+        {degree}
+      </div>
+    </div>
+    );    
+  }
+  render(){
+    return(
+      <div className="job-stack">
+        <h2>Stack technique</h2>
+        <div>
+          {this.renderStack()}
+        </div>
+      </div>
+    );
+  }
+}
 
 class JobListItem extends Component{
+  constructor(props){
+    super(props);
+    this.onClickJob = this.onClickJob.bind(this);
+  }
+  
+  onClickJob(){
+    this.props.onClickJob(this.props.job);
+  }
   
   render(){
     let job = this.props.job;
@@ -25,14 +90,18 @@ class JobListItem extends Component{
     });
 
     let skillsRender;
-    if(this.props.jobSelected){
+    let iconArrow;
+    if(this.props.isSelected){
       skillsRender = <ul> {skills} </ul>;
+      iconArrow = iconArrowBottom;
+    }else {
+      iconArrow = iconArrowRight;
     }
 
     return(
       <div className="job-list-item">
-        <div className="title">
-          <h3><img src={iconArrowRight}/>{job.title}</h3>
+        <div className="title" onClick={this.onClickJob}>
+          <h3><img src={iconArrow}/>{job.title}</h3>
         </div>
         {skillsRender}
       </div>
@@ -49,7 +118,8 @@ class JobList extends Component {
   renderJobListItems (){
     const jobs = this.props.jobs.slice();
     const jobsListItems = jobs.map((job,i) => {
-      return ( <JobListItem key={i} job={job} /> ) ;
+      return ( <JobListItem key={i} job={job} onClickJob={this.props.onClickJob} 
+        isSelected={(job === this.props.jobSelected)}/> ) ;
     })
     return (jobsListItems);
   }
@@ -70,18 +140,23 @@ class Job extends Component {
   constructor(props){
     super(props);
     this.state = {
-      jobSlected: null,
+      jobSelected: null,
     }
     this.handleClickJob = this.handleClickJob.bind(this);
   }
 
-  handleClickJob(){
+  handleClickJob(job){
+    this.setState({jobSelected:(this.state.jobSelected===job)?null:job});
   }
 
   render (){
     return (
       <div className="job content">
-        <JobList  jobs={this.props.jobs}/>
+        <JobList  
+          jobSelected={this.state.jobSelected} 
+          jobs={this.props.jobs} 
+          onClickJob={this.handleClickJob}/>
+          { this.state.jobSelected !== null && <JobStack job={this.state.jobSelected}/> }
       </div>
     );
   }

@@ -127,6 +127,7 @@ body {
       }
       .ico-item:hover {
         transform: scale(1.2);
+        cursor: pointer;
       }
     }
     .content {
@@ -146,8 +147,26 @@ body {
         display: flex;
       }
     }
+  }
 
-    // CoreCVItem
+  // JobListItem
+  .job {
+    .job-list{
+      .job-list-item{
+        .title {
+          img{
+            padding-inline-start: 0.3rem;
+            padding-inline-end: 0.3rem;
+          }
+        }
+        .title:hover {
+          cursor: pointer;
+          img{
+            transform:scale(1.5);
+          }
+        }
+      }
+    }
   }
 
   // Footer
