@@ -22,36 +22,28 @@ class JobStack extends Component {
     let degree;
     
     if(job && Array.isArray(job.env)){
-      env = <ul>{ job.env.map((env,i)=>{ return(<li key={i}>{env}</li>)}) }</ul> ;
+      env =<div><h3>Environnement technique</h3>
+        <ul>{ job.env.map((env,i)=>{ return(<li key={i}>{env}</li>)}) }</ul></div>;
     }
     if(job && Array.isArray(job.langage)){
-      langage = <ul>{ job.langage.map((langage,i)=>{ return(<li key={i}>{langage}</li>)}) }</ul> ;
+      langage = <div><h3>Langage informatique</h3>
+        <ul>{ job.langage.map((langage,i)=>{ return(<li key={i}>{langage}</li>)}) }</ul></div>;
     }
     if(job && Array.isArray(job.framework)){
-      framework = <ul>{ job.framework.map((framework,i)=>{ return(<li key={i}>{framework}</li>)}) }</ul> ;
+      framework = <div><h3>Framework</h3>
+        <ul>{ job.framework.map((framework,i)=>{ return(<li key={i}>{framework}</li>)}) }</ul></div>;
     }
     if(job && job.degree){
-      degree = <p>{job.degree}</p> ;
+      degree = <div><h3>Diplômes</h3>
+        <p>{job.degree}</p></div>;
     }
         
     return(
-    <div>
-      <div>
-        <h3>Environnement :</h3>
-        {env} 
-      </div>
-      <div>
-        <h3>Langage informatique :</h3>
-        {langage}
-      </div>
-      <div>
-        <h3>Framework et applications :</h3>
+    <div>      
+        {env}      
+        {langage}      
         {framework}
-      </div>
-      <div>
-        <h3>Diplômes :</h3>
         {degree}
-      </div>
     </div>
     );    
   }
@@ -187,14 +179,14 @@ class CoreCVITem extends Component {
 
     return(
       <div className={`core-cv-item ${actif}`}>
+        <div onClick={this.props.onClick}>
         <img
           className="ico-item" 
           alt={`Icône en rapport avec la section ${this.props.title} du CV`}
-          src={imagePath}
-          onClick={this.props.onClick}/>
+          src={imagePath}/>
         <h1>
           {this.props.title}
-        </h1>
+        </h1></div>
         {content}
       </div>
     );
