@@ -20,26 +20,34 @@ class JobStack extends Component {
     let langage;
     let framework;
     let degree;
-    
+
+    if(!job){
+      return(<div className="job-stack-empty"><p>Cliquez sur une expérience professionnelle
+        pour en voir plus!</p></div>);
+    }
+    let classNameList= "list-stack";
     if(job && Array.isArray(job.env)){
-      env =<div><h3>Environnement technique</h3>
+      env =<div className={classNameList}>
+        <h3>Environnement technique</h3>
         <ul>{ job.env.map((env,i)=>{ return(<li key={i}>{env}</li>)}) }</ul></div>;
     }
     if(job && Array.isArray(job.langage)){
-      langage = <div><h3>Langage informatique</h3>
+      langage = <div className={classNameList}>
+        <h3>Langage informatique</h3>
         <ul>{ job.langage.map((langage,i)=>{ return(<li key={i}>{langage}</li>)}) }</ul></div>;
     }
     if(job && Array.isArray(job.framework)){
-      framework = <div><h3>Framework</h3>
+      framework = <div className={classNameList}>
+        <h3>Framework</h3>
         <ul>{ job.framework.map((framework,i)=>{ return(<li key={i}>{framework}</li>)}) }</ul></div>;
     }
     if(job && job.degree){
-      degree = <div><h3>Diplômes</h3>
+      degree = <div className={`${classNameList} degree`}><h3>Diplôme obtenu</h3>
         <p>{job.degree}</p></div>;
     }
         
     return(
-    <div>      
+    <div className="job-stack">      
         {env}      
         {langage}      
         {framework}
@@ -49,12 +57,7 @@ class JobStack extends Component {
   }
   render(){
     return(
-      <div className="job-stack">
-        <h2>Stack technique</h2>
-        <div>
-          {this.renderStack()}
-        </div>
-      </div>
+          this.renderStack()
     );
   }
 }
@@ -91,9 +94,9 @@ class JobListItem extends Component{
     }
 
     return(
-      <div className="job-list-item">
+      <div className={`job-list-item ${(this.props.isSelected)?"selected":""}`}>
         <div className="title" onClick={this.onClickJob}>
-          <h3><img src={iconArrow}/>{job.title}</h3>
+          <h3><img alt="" src={iconArrow}/>{job.title}</h3>
         </div>
         {skillsRender}
       </div>
@@ -119,7 +122,6 @@ class JobList extends Component {
   render(){
     return (
       <div className="job-list">
-        <h2>Liste des dernières expériences professionnelles</h2>
         <div>
           {this.renderJobListItems()}
         </div>
@@ -148,45 +150,52 @@ class Job extends Component {
           jobSelected={this.state.jobSelected} 
           jobs={this.props.jobs} 
           onClickJob={this.handleClickJob}/>
-          { this.state.jobSelected !== null && <JobStack job={this.state.jobSelected}/> }
+          <JobStack job={this.state.jobSelected}/>
       </div>
     );
   }
 }
 
 class CoreCVITem extends Component {
-  constructor(props){
-    super(props);
-  }
   
   render(){
     const actif = this.props.actif ? 'actif' : '';
     let content = <p className="content"> Dev en cours !</p>;
-    let imagePath = null;
+    let image = null;
 
     switch(this.props.section){
       case "job":
         content = <Job jobs={this.props.data}/>;
-        imagePath = this.props.actif?iconJobOrange:iconJobGrey;
+        image = <img
+          className="ico-item" 
+          alt={`Icône en rapport avec la section ${this.props.title} du CV`}
+          src={this.props.actif?iconJobOrange:iconJobGrey}/>
         break;
       case "skill" :
-        imagePath = this.props.actif?iconSkillOrange:iconSkillGrey;
+        image = <img
+          className="ico-item" 
+          alt={`Icône en rapport avec la section ${this.props.title} du CV`}
+          src={this.props.actif?iconSkillOrange:iconSkillGrey}/>
         break;
       case "degree" :
-        imagePath = this.props.actif?iconDegreeOrange:iconDegreeGrey;
+        image =  <img
+            className="ico-item" 
+            alt={`Icône en rapport avec la section ${this.props.title} du CV`}
+            src={this.props.actif?iconDegreeOrange:iconDegreeGrey}/>
         break;
+      default :
+        image = "";
     }
 
     return(
       <div className={`core-cv-item ${actif}`}>
-        <div onClick={this.props.onClick}>
-        <img
-          className="ico-item" 
-          alt={`Icône en rapport avec la section ${this.props.title} du CV`}
-          src={imagePath}/>
+        <div className="button-item" onClick={this.props.onClick}>
+        {image}
         <h1>
           {this.props.title}
-        </h1></div>
+        </h1>
+        {(actif)?image:null}
+        </div>
         {content}
       </div>
     );
