@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Job from './Job.js';
-import Skill from './Skill.js';
+import Job from './Job/Job.js';
+import Skill from './Skill/Skill.js';
 // Images
 import iconJobGrey from './img/job-grey.png';
 import iconJobOrange from './img/job-orange.png';

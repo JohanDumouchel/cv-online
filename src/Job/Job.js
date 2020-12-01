@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Job.scss';
 
 import iconArrowRight from './img/arrow-right-orange-32.png';
 import iconArrowBottom from './img/arrow-bottom-orange-32.png';
@@ -129,7 +130,7 @@ class Job extends Component {
     super(props);
     this.state = {
       jobSelected: null,
-      jobs: Jobs
+      jobs: JobsData,
     }
     this.handleClickJob = this.handleClickJob.bind(this);
   }
@@ -151,7 +152,7 @@ class Job extends Component {
   }
 }
 
-const Jobs = [
+const JobsData = [
   {
     title : "Développeur Full Stack - IN'LI - 11/17 - 11/19",
     skills : [

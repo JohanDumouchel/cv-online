@@ -1,19 +1,4 @@
-/* 
-* Screen Size for responsive design
-*/
-// Large screen min width
-$mediaLS: 900px;
-// Medium screen min width
-$mediaMS: 600px;
-// Small screen min width
-$mediaSS: 300px; 
-
-/*
-* Color 
-*/
-$grey-light: #efefef;
-$grey-dark: #666666;
-$orange: #f6b26b;
+@import "./Var.scss";
 
 body {
   color: $grey-dark;
@@ -169,77 +154,6 @@ body {
       .content {
         display: flex;
       }
-    }
-  }
-
-  // JobListItem
-  .job {
-    font-family: 'SourceCodePro-light';
-    display: flex;
-    .job-list{
-      padding-inline-start: 1.8rem;
-      padding-inline-end: 1.8rem;
-      padding-block-start: 1.8rem;
-      width: 40%;
-      .job-list-item{
-        li{          
-          list-style: "❏  ";
-          padding-block-start: 0.5rem;
-          padding-block-end: 0.5rem;
-        }
-        .title {
-          font-family: "Oswald-Regular";
-          img{
-            padding-inline-start: 0.3rem;
-            padding-inline-end: 0.3rem;
-            max-width: 1rem;
-          }
-        }
-        .title:hover {
-          cursor: pointer;
-          img{
-            transform:scale(1.5);
-          }
-        }
-      }
-      .job-list-item:hover , .selected{
-        .title {
-          text-decoration: underline $orange;
-        }
-      }
-    }
-
-    // JobStack
-    .job-stack{
-      width: 60%;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;      
-      padding-block-start: 1.8rem;
-      .list-stack{
-        padding-inline-start: 1.5rem;
-        h3{
-          font-family: "Oswald-Regular";
-        }
-        ul{
-          list-style: none;
-          padding-inline-start: 0.8rem;
-          border-inline-start: solid 2px $orange;
-        }
-        li{
-          padding-block-start: 0.5rem;
-          padding-block-end: 0.5rem;
-        }
-        .degree {
-          flex-grow: 1;
-          padding-inline-start: 0.8rem;
-          border-inline-start: solid 2px $orange;
-        }
-      }
-    }
-    // JobStack empty
-    .job-stack-empty{
-      padding-block-start: 1.8rem;
     }
   }
 
