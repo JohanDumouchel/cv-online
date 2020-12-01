@@ -175,6 +175,7 @@ body {
   // JobListItem
   .job {
     font-family: 'SourceCodePro-light';
+    display: flex;
     .job-list{
       padding-inline-start: 1.8rem;
       padding-inline-end: 1.8rem;

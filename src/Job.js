@@ -140,7 +140,7 @@ class Job extends Component {
 
   render (){
     return (
-      <div className="job content">
+      <div className="job">
         <JobList  
           jobSelected={this.state.jobSelected} 
           jobs={this.state.jobs} 

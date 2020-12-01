@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Job from './Job.js'
+import Job from './Job.js';
+import Skill from './Skill.js';
 // Images
 import iconJobGrey from './img/job-grey.png';
 import iconJobOrange from './img/job-orange.png';
@@ -24,6 +25,7 @@ class CoreCVITem extends Component {
           src={this.props.actif?iconJobOrange:iconJobGrey}/>
         break;
       case "skill" :
+        content = <Skill />
         image = <img
           className="ico-item" 
           alt={`Icône en rapport avec la section ${this.props.title} du CV`}
@@ -48,7 +50,9 @@ class CoreCVITem extends Component {
         </h1>
         {(actif)?image:null}
         </div>
-        {content}
+        <div className="content">
+          {content}
+        </div>
       </div>
     );
   }
