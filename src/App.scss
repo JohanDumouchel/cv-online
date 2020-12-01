@@ -121,7 +121,7 @@ body {
       text-align: center;
       padding-block-start: 1.6rem;
       .ico-item{
-        max-width: 8rem;
+        max-width: 6rem;
         height: auto;
         transition: transform 1s;
       }
@@ -158,12 +158,9 @@ body {
         justify-content: space-around;
         max-width: 100%;
         padding-inline-start: 1.5rem;
-      }
-      .button-item:hover {
-        cursor: pointer;
         .ico-item{
-          transform: none;
-        }    
+          max-width: 4rem;
+        }
       }
       h1 {
         color: $grey-light;
@@ -177,6 +174,7 @@ body {
 
   // JobListItem
   .job {
+    font-family: 'SourceCodePro-light';
     .job-list{
       padding-inline-start: 1.8rem;
       padding-inline-end: 1.8rem;
@@ -193,6 +191,7 @@ body {
           img{
             padding-inline-start: 0.3rem;
             padding-inline-end: 0.3rem;
+            max-width: 1rem;
           }
         }
         .title:hover {

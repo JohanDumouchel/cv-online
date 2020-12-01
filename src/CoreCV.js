@@ -6,8 +6,8 @@ import iconSkillGrey from './img/skill-grey.png';
 import iconSkillOrange from './img/skill-orange.png';
 import iconDegreeGrey from './img/degree-grey.png';
 import iconDegreeOrange from './img/degree-orange.png';
-import iconArrowRight from './img/arrow-right-orange.png';
-import iconArrowBottom from './img/arrow-bottom-orange.png';
+import iconArrowRight from './img/arrow-right-orange-32.png';
+import iconArrowBottom from './img/arrow-bottom-orange-32.png';
 
 class JobStack extends Component {
   constructor(props){
@@ -290,7 +290,7 @@ const Jobs = [
       "Gestion de projet sous la méthode Agile (inspiré de SCRUM)",
     ],
     env : [
-      "Windows","CentOS","Debian","Git","Sublime Text","NetBean",
+      "Windows","CentOS","Debian","Git","MySql","Sublime Text","NetBean",
     ],
     langage : [
       "Php 5","Html","Css","Less","SQL",
@@ -308,13 +308,13 @@ const Jobs = [
       "Intégration Web",
     ],
     env : [
-      "Windows","WinDev 14","SAGE Compta", "SAGE Bâtigest",
+      "Windows","WinDev 14","SAGE Compta", "SAGE Bâtigest","Access",
     ],
     langage : [
-      "Html","Css","Access","WLangage",
+      "Html","Css","WLangage",
     ],
     framework : [
-      "JQuery", "WinDev 14",
+      "JQuery",
     ],
     degree : "BTS SIO - ISIO, Paris - 2014",
   }
