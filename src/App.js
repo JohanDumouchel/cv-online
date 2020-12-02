@@ -2,7 +2,7 @@ import './App.scss';
 import CoreCV from './CoreCV.js';
 // Images
 import PhotoProfile from './img/profile-job.jpg'
-import { ReactComponent as IconResume } from './img/logo-resume.svg';
+import iconSite from './img/icon-site.png';
 import iconUser from './img/user.png';
 import iconLetter from './img/letter.png';
 import iconSmartPhone from './img/smartphone.png';
@@ -16,7 +16,7 @@ import FileCV from './files/CV-johan-dumouchel-2020.pdf';
 function HeaderBar() {
   return (
     <div className="container header-bar">
-      <IconResume title="icône représentant un CV" className="ico-resume"/>
+      <img title="icône représentant un CV" className="ico-resume" src={iconSite}/>
       <h1>CV Online - Johan Dumouchel</h1>
     </div>
   );
