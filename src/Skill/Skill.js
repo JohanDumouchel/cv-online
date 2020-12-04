@@ -2,9 +2,22 @@ import React, { Component } from 'react';
 import './Skill.scss';
 
 class SkillItem extends Component {
+  constructor(props){
+    super(props);
+    this.onClickSkill = this.onClickSkill.bind(this);
+  }
+
+  onClickSkill(){
+    this.props.onClickSkill(this.props.skill);
+  }
+
   render(){
+    let className;
+    if(this.props.isLinkedTo){
+      className="is-linked-to";
+    }
     return (
-    <div>
+    <div className={className} onClick={this.onClickSkill}>
       <p>{this.props.skill.content}</p>
     </div>
     );
@@ -12,13 +25,21 @@ class SkillItem extends Component {
 }
 
 class SkillSubCategory extends Component {
+
   render(){
     if(!this.props.skills || !Array.isArray(this.props.skills)){
       return (<p>Pas de Compétences !</p>)
     }
 
+    const skillIdsToLink = this.props.skillIdsToLink;
+
     const skills = this.props.skills.map((skill)=>{
-      return <SkillItem key={skill.id} skill={skill}/>
+
+      let isLinkedTo = (skillIdsToLink !== null && skillIdsToLink.includes(skill.id));
+
+      return <SkillItem key={skill.id} skill={skill} 
+      onClickSkill={this.props.onClickSkill}
+      isLinkedTo={isLinkedTo}/>
     });
 
     return (
@@ -32,11 +53,17 @@ class SkillSubCategory extends Component {
 class SkillCategory extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      skillFocus : null,
+    }
+    
     this.isCategory = this.isCategory.bind(this);
     this.getSkillsBySubCategory = this.getSkillsBySubCategory.bind(this);
     this.renderSkillsBySubCategory = this.renderSkillsBySubCategory.bind(this);
     this.renderSkills = this.renderSkills.bind(this);
     this.onClickCategory = this.onClickCategory.bind(this);
+    this.handleClickSkill = this.handleClickSkill.bind(this);
+    this.getSkillsByIds = this.getSkillsByIds.bind(this);
   }
   
   isCategory(category){
@@ -64,25 +91,56 @@ class SkillCategory extends Component {
         subCategories.push(skill.subCategory);
       }
     });
-    
+    let skillIdsToLink = [];
+    const skillFocus = this.state.skillFocus;
+    let ids = null;
+    if(skillFocus!== null){
+      ids = skillFocus.linkTo;
+    }
     const subCatRender = subCategories.map((subCat,i)=>{
       let idSubCat = subCat.id;
       return(
-        <SkillSubCategory key={idSubCat} subCategory={subCat} skills={this.getSkillsBySubCategory(subCat)}/>
+        <SkillSubCategory key={idSubCat} subCategory={subCat} 
+        skills={this.getSkillsBySubCategory(subCat)}
+        skillIdsToLink={ids}
+        onClickSkill={this.handleClickSkill} />
       );
     });
     return subCatRender;
   }
 
   renderSkills(){
+    const skillFocus = this.state.skillFocus;
+    let ids=null;
+    if(skillFocus!== null){
+      ids = skillFocus.linkTo;
+    }
     const skills = this.props.skills.map((skill)=>{
-      return (<SkillItem key={skill.id} skill={skill}/>)
+      let isLinkedTo = (skill.linkTo !== null && ids.includes(skill.id));
+      return (<SkillItem key={skill.id} skill={skill} onClickSkill={this.handleClickSkill} isLinkedTo={isLinkedTo}/>)
     });
     return skills;
   }
 
   onClickCategory(){
     this.props.onClickCategory(this.props.category);
+  }
+
+  getSkillsByIds(ids){
+    let skills= [];
+    if(!ids || Array.isArray(ids)){
+      return null;
+    }
+    this.state.skills.forEach(skill => {
+      if(ids.includes(skill.id) && skills.includes(skill)){
+        skills.push(skill);
+      }
+    });
+    return skills;
+  }
+
+  handleClickSkill(skill){
+    this.setState({skillFocus: skill});
   }
 
   render(){
@@ -129,25 +187,11 @@ class Skill extends Component {
     this.getSkillsByCategory = this.getSkillsByCategory.bind(this);
     this.getMainCategories = this.getMainCategories.bind(this);
     this.renderCategories = this.renderCategories.bind(this);
-    this.getSkillsByIds = this.getSkillsByIds.bind(this);
     this.handleClickCategory = this.handleClickCategory.bind(this);
   }
 
   handleClickCategory(category){
     this.setState({categoryFocus: (this.state.categoryFocus === category)?null:category,});
-  }
-
-  getSkillsByIds(ids){
-    let skills= [];
-    if(!ids || Array.isArray(ids)){
-      return null;
-    }
-    this.state.skills.forEach(skill => {
-      if(ids.includes(skill.id) && skills.includes(skill)){
-        skills.push(skill);
-      }
-    });
-    return skills;
   }
 
   getSkillsByCategory(category){
