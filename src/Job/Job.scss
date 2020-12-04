@@ -1,73 +1,78 @@
 @import "../Var.scss";
-  
-// JobListItem
-.job {
-  font-family: 'SourceCodePro-light';
-  display: flex;
-  .job-list{
-    padding-inline-start: 1.8rem;
-    padding-inline-end: 1.8rem;
-    padding-block-start: 1.8rem;
-    min-width: 30rem;
-    max-width: 40rem;
-    .job-list-item{
-      li{          
-        list-style: "❏  ";
-        padding-block-start: 0.5rem;
-        padding-block-end: 0.5rem;
-      }
-      .title {
-        font-family: "Oswald-Regular";
-        img{
-          padding-inline-start: 0.3rem;
-          padding-inline-end: 0.3rem;
-          max-width: 1rem;
-        }
-      }
-      .title:hover {
-        cursor: pointer;
-        img{
-          transform:scale(1.5);
-        }
-      }
-    }
-    .job-list-item:hover , .selected{
-      .title {
-        text-decoration: underline $orange;
-      }
-    }
-  }
 
-  // JobStack
-  .job-stack{
+
+// Large Screen design
+@media(min-width: $mediaLS){
+
+  // JobListItem
+  .job {
+    font-family: 'SourceCodePro-light';
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding-block-start: 1.8rem;
-    .list-stack{
-      padding-inline-start: 1.5rem;
-      h3{
-        font-family: "Oswald-Regular";
+    .job-list{
+      padding-inline-start: 1.8rem;
+      padding-inline-end: 1.8rem;
+      padding-block-start: 1.8rem;
+      min-width: 30rem;
+      max-width: 40rem;
+      .job-list-item{
+        li{          
+          list-style: "❏  ";
+          padding-block-start: 0.5rem;
+          padding-block-end: 0.5rem;
+        }
+        .title {
+          font-family: "Oswald-Regular";
+          img{
+            padding-inline-start: 0.3rem;
+            padding-inline-end: 0.3rem;
+            max-width: 1rem;
+          }
+        }
+        .title:hover {
+          cursor: pointer;
+          img{
+            transform:scale(1.5);
+          }
+        }
       }
-      ul{
-        list-style: none;
-        padding-inline-start: 0.8rem;
-        border-inline-start: solid 2px $orange;
-      }
-      li{
-        padding-block-start: 0.5rem;
-        padding-block-end: 0.5rem;
-      }
-      .degree {
-        flex-grow: 1;
-        padding-inline-start: 0.8rem;
-        border-inline-start: solid 2px $orange;
+      .job-list-item:hover , .selected{
+        .title {
+          text-decoration: underline $orange;
+        }
       }
     }
-  }
-  // JobStack empty
-  .job-stack-empty{
-    padding-block-start: 1.8rem;
-    width: 50%;
+
+    // JobStack
+    .job-stack{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding-block-start: 1.8rem;
+      .list-stack{
+        padding-inline-start: 1.5rem;
+        h3{
+          font-family: "Oswald-Regular";
+        }
+        ul{
+          list-style: none;
+          padding-inline-start: 0.8rem;
+          border-inline-start: solid 2px $orange;
+        }
+        li{
+          padding-block-start: 0.5rem;
+          padding-block-end: 0.5rem;
+        }
+        .degree {
+          flex-grow: 1;
+          padding-inline-start: 0.8rem;
+          border-inline-start: solid 2px $orange;
+        }
+      }
+    }
+    // JobStack empty
+    .job-stack-empty{
+      padding-block-start: 1.8rem;
+      width: 50%;
+    }
   }
 }

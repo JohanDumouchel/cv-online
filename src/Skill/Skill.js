@@ -36,6 +36,7 @@ class SkillCategory extends Component {
     this.getSkillsBySubCategory = this.getSkillsBySubCategory.bind(this);
     this.renderSkillsBySubCategory = this.renderSkillsBySubCategory.bind(this);
     this.renderSkills = this.renderSkills.bind(this);
+    this.onClickCategory = this.onClickCategory.bind(this);
   }
   
   isCategory(category){
@@ -80,31 +81,38 @@ class SkillCategory extends Component {
     return skills;
   }
 
+  onClickCategory(){
+    this.props.onClickCategory(this.props.category);
+  }
+
   render(){
     if(!this.isCategory(this.props.category)){
       return null;
     }
     let category = this.props.category;
-    let skills;
-
-    switch (category.id) {
-      case 'dev' :
-        skills = this.renderSkillsBySubCategory();
-        break;
-      case 'managment' :
-        skills = this.renderSkills();
-        break;
-      default : 
-        skills = null;
-        break;
+    let skillToRender = null;
+    if(this.props.skills !== null){
+      let skills;
+      switch (category.id) {
+        case 'dev' :
+          skills = this.renderSkillsBySubCategory();
+          break;
+        case 'managment' :
+          skills = this.renderSkills();
+          break;
+        default : 
+          skills = null;
+          break;
+      }
+      skillToRender = <div className="skill-list">{skills}</div>
     }
     
     return(
-    <div>
+    <div className="category">
+      <div className="btn-title" onClick={this.onClickCategory}>
       <h2 id={category.id}> {category.title} </h2>
-      <div>
-        {skills}
       </div>
+      {skillToRender}
     </div>
     
     );
@@ -116,10 +124,30 @@ class Skill extends Component {
     super(props);
     this.state = {
       skills: SkillsData,
+      categoryFocus: null,
     }
     this.getSkillsByCategory = this.getSkillsByCategory.bind(this);
     this.getMainCategories = this.getMainCategories.bind(this);
     this.renderCategories = this.renderCategories.bind(this);
+    this.getSkillsByIds = this.getSkillsByIds.bind(this);
+    this.handleClickCategory = this.handleClickCategory.bind(this);
+  }
+
+  handleClickCategory(category){
+    this.setState({categoryFocus: (this.state.categoryFocus === category)?null:category,});
+  }
+
+  getSkillsByIds(ids){
+    let skills= [];
+    if(!ids || Array.isArray(ids)){
+      return null;
+    }
+    this.state.skills.forEach(skill => {
+      if(ids.includes(skill.id) && skills.includes(skill)){
+        skills.push(skill);
+      }
+    });
+    return skills;
   }
 
   getSkillsByCategory(category){
@@ -158,7 +186,9 @@ class Skill extends Component {
     let categories = this.getMainCategories();
     if(categories !== null && Array.isArray(categories) && categories.length > 0){
       const renderCategories = categories.map((category)=>{
-        return <SkillCategory key={category.id} category={category} skills={this.getSkillsByCategory(category)}/>
+        const skills = (this.state.categoryFocus === category)?this.getSkillsByCategory(category):null;
+        return <SkillCategory key={category.id} category={category} skills={skills} 
+          onClickCategory={this.handleClickCategory}/>
       });
       return (renderCategories)
     }
@@ -173,7 +203,7 @@ class Skill extends Component {
 
     let categories = this.renderCategories();
 
-    return (<div>{categories}</div>);
+    return (<div className="skill">{categories}</div>);
   }
 }
 

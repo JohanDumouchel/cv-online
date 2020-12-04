@@ -1,1 +1,13 @@
 @import "../Var.scss";
+
+
+// Large Screen design
+@media(min-width: $mediaLS){
+
+  //Skill
+  .skill{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}
