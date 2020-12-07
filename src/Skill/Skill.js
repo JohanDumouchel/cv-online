@@ -1,14 +1,57 @@
 import React, { Component } from 'react';
 import './Skill.scss';
 
+// Images
+import StartGrey from './img/star-grey-16.png';
+import StartOrange from './img/star-orange-16.png';
+
 class SkillItem extends Component {
   constructor(props){
     super(props);
     this.onClickSkill = this.onClickSkill.bind(this);
+    this.renderContent = this.renderContent.bind(this);
+    this.renderSkillGrade = this.renderSkillGrade.bind(this);
   }
 
   onClickSkill(){
     this.props.onClickSkill(this.props.skill);
+  }
+
+  renderSkillGrade(){
+    let skill = this.props.skill;
+    if(skill.grade === null || !Number.isInteger(skill.grade)){
+      return null;
+    }
+    let renderStar = [];
+    for (let i = 0; i < 10; i++) {
+      if(i < skill.grade){
+        renderStar.push(<img key={i} src={StartOrange} alt="orange star full"/>);
+      }else {    
+        renderStar.push(<img key={i} src={StartGrey} alt="grey star empty"/>);
+      }
+    }
+    return renderStar;
+  }
+
+  renderContent(){
+    const skill = this.props.skill;
+
+    if(skill.subCategory === null ||
+      skill.subCategory !== SkillCategoriesData.langages){
+      return (<p>{`❏   ${skill.content}`}</p>);
+    }
+
+    if(skill.subCategory === SkillCategoriesData.langages){
+      let skillGrade = this.renderSkillGrade();
+
+      return(
+        <div className="langage">
+          <p>{skill.content}</p>
+          <span className="grade">{skillGrade}</span>
+        </div>     
+      );
+    }
+
   }
 
   render(){
@@ -16,9 +59,13 @@ class SkillItem extends Component {
     if(this.props.isLinkedTo){
       className="is-linked-to";
     }
+    if(this.props.skill.subCategory === SkillCategoriesData.front 
+      || this.props.skill.subCategory === SkillCategoriesData.back){
+        className += " btn";
+      }
     return (
     <div className={className} onClick={this.onClickSkill}>
-      <p>{this.props.skill.content}</p>
+      {this.renderContent()}
     </div>
     );
   }

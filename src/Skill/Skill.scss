@@ -11,7 +11,12 @@
 
     .btn-title {
       text-align: center;
+      font-family: "Oswald-Regular";
       cursor: pointer;
+    }
+
+    .btn-title:hover {
+      
     }
 
     .skill-list {
@@ -20,6 +25,24 @@
       max-height: 35rem;
       align-content: space-around;
       justify-content: center;
+
+      .btn {
+        cursor: pointer;
+      }
+
+      // SubCategory langage
+      .langage {
+        display: flex;
+        flex-direction: row;
+        align-content: baseline;
+        justify-content: space-between;
+        padding-block-start: 0.6em;
+        padding-block-end: 0.6em;
+        p{
+          margin:0;
+          padding-inline-end: 0.6rem;
+        }
+      }
 
       .sub-category {
         h3 {
