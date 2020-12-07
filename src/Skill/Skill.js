@@ -22,6 +22,12 @@ class SkillItem extends Component {
     if(skill.grade === null || !Number.isInteger(skill.grade)){
       return null;
     }
+
+    /* 
+    TODO 
+    IF SKILL IS LINKTO 
+      PUT GREY DARK STAR */
+
     let renderStar = [];
     for (let i = 0; i < 10; i++) {
       if(i < skill.grade){
@@ -43,7 +49,6 @@ class SkillItem extends Component {
 
     if(skill.subCategory === SkillCategoriesData.langages){
       let skillGrade = this.renderSkillGrade();
-
       return(
         <div className="langage">
           <p>{skill.content}</p>

@@ -58,6 +58,10 @@
   }
 
   .is-linked-to {
-    background-color: black;
+    transform: scale(1.1);
+    border-inline-start: solid 0.4rem $orange;
+    border-block-start: solid 0.4rem $grey-light;
+    border-block-end: solid 0.1rem $orange;
+    border-inline-end: solid 0.1rem $grey-light;
   }
 }
