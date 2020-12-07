@@ -34,16 +34,15 @@ class SkillSubCategory extends Component {
     const skillIdsToLink = this.props.skillIdsToLink;
 
     const skills = this.props.skills.map((skill)=>{
-
-      let isLinkedTo = (skillIdsToLink !== null && skillIdsToLink.includes(skill.id));
-
+      let isLinkedTo = (skillIdsToLink !== null 
+        && skillIdsToLink.includes(skill.id));
       return <SkillItem key={skill.id} skill={skill} 
       onClickSkill={this.props.onClickSkill}
       isLinkedTo={isLinkedTo}/>
     });
 
     return (
-    <div>
+    <div className={`sub-category ${this.props.subCategory.id}`}>
       <h3>{this.props.subCategory.title}</h3>
       {skills}
     </div>);
@@ -62,7 +61,6 @@ class SkillCategory extends Component {
     this.renderSkillsBySubCategory = this.renderSkillsBySubCategory.bind(this);
     this.renderSkills = this.renderSkills.bind(this);
     this.onClickCategory = this.onClickCategory.bind(this);
-    this.handleClickSkill = this.handleClickSkill.bind(this);
     this.getSkillsByIds = this.getSkillsByIds.bind(this);
   }
   
@@ -92,32 +90,34 @@ class SkillCategory extends Component {
       }
     });
     let skillIdsToLink = [];
-    const skillFocus = this.state.skillFocus;
-    let ids = null;
-    if(skillFocus!== null){
-      ids = skillFocus.linkTo;
+    const skillFocus = this.props.skillFocus;
+    if(skillFocus!== null 
+      && skillFocus.linkTo !== null
+      && Array.isArray(skillFocus.linkTo)){
+      skillIdsToLink = skillFocus.linkTo.slice();
     }
-    const subCatRender = subCategories.map((subCat,i)=>{
+    const subCatRender = subCategories.map((subCat)=>{
       let idSubCat = subCat.id;
       return(
         <SkillSubCategory key={idSubCat} subCategory={subCat} 
         skills={this.getSkillsBySubCategory(subCat)}
-        skillIdsToLink={ids}
-        onClickSkill={this.handleClickSkill} />
+        skillIdsToLink={skillIdsToLink}
+        onClickSkill={this.props.onClickSkill} />
       );
     });
     return subCatRender;
   }
 
   renderSkills(){
-    const skillFocus = this.state.skillFocus;
-    let ids=null;
+    const skillFocus = this.props.skillFocus;
+    let ids = null;
     if(skillFocus!== null){
       ids = skillFocus.linkTo;
     }
     const skills = this.props.skills.map((skill)=>{
-      let isLinkedTo = (skill.linkTo !== null && ids.includes(skill.id));
-      return (<SkillItem key={skill.id} skill={skill} onClickSkill={this.handleClickSkill} isLinkedTo={isLinkedTo}/>)
+      let isLinkedTo = (ids !== null && Array.isArray(ids) && ids.includes(skill.id));
+      return (<SkillItem key={skill.id} skill={skill} 
+        onClickSkill={this.props.onClickSkill} isLinkedTo={isLinkedTo}/>)
     });
     return skills;
   }
@@ -137,10 +137,6 @@ class SkillCategory extends Component {
       }
     });
     return skills;
-  }
-
-  handleClickSkill(skill){
-    this.setState({skillFocus: skill});
   }
 
   render(){
@@ -183,15 +179,22 @@ class Skill extends Component {
     this.state = {
       skills: SkillsData,
       categoryFocus: null,
+      skillFocus: null,
     }
     this.getSkillsByCategory = this.getSkillsByCategory.bind(this);
     this.getMainCategories = this.getMainCategories.bind(this);
     this.renderCategories = this.renderCategories.bind(this);
     this.handleClickCategory = this.handleClickCategory.bind(this);
+    this.handleClickSkill = this.handleClickSkill.bind(this);
   }
 
   handleClickCategory(category){
-    this.setState({categoryFocus: (this.state.categoryFocus === category)?null:category,});
+    this.setState({categoryFocus: (this.state.categoryFocus === category)?null:category,
+    skillFocus: null});
+  }
+
+  handleClickSkill(skill){
+    this.setState({skillFocus: (this.state.skillFocus === skill)?null:skill});
   }
 
   getSkillsByCategory(category){
@@ -232,7 +235,8 @@ class Skill extends Component {
       const renderCategories = categories.map((category)=>{
         const skills = (this.state.categoryFocus === category)?this.getSkillsByCategory(category):null;
         return <SkillCategory key={category.id} category={category} skills={skills} 
-          onClickCategory={this.handleClickCategory}/>
+          onClickCategory={this.handleClickCategory} onClickSkill={this.handleClickSkill}
+          skillFocus={this.state.skillFocus}/>
       });
       return (renderCategories)
     }

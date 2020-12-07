@@ -3,12 +3,35 @@
 
 // Large Screen design
 @media(min-width: $mediaLS){
-
   //Skill
   .skill{
     display: flex;
     flex-direction: column;
     width: 100%;
+
+    .btn-title {
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-flow: column wrap;
+      max-height: 35rem;
+      align-content: space-around;
+      justify-content: center;
+
+      .sub-category {
+        h3 {
+          font-family: "Oswald-Regular";
+          border-bottom: solid 1rem $orange;
+        }
+      }
+
+      .back,.front {
+        max-width: 25rem;
+      }
+    }
   }
 
   .is-linked-to {
