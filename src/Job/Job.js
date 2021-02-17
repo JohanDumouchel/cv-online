@@ -154,7 +154,7 @@ class Job extends Component {
 
 const JobsData = [
   {
-    title : "Développeur Full Stack - IN'LI - 11/17 - 11/21",
+    title : "Développeur Full Stack - IN'LI - 11/17 - 11/20",
     skills : [
       "Conception et développement de solutions applicatives pour de la gestion interne.",
       "Développement d'outils d'administration",
